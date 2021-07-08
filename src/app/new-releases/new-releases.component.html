@@ -1,4 +1,8 @@
 <h1>New Release</h1>
+<h3>
+  The following is a list of new releases. <br />Click the <b>album cover</b
+  > or <b>artist name</b> for more information.
+</h3>
 <div class="content">
   <div fxLayout="row wrap" fxLayout.xs="column">
     <!-- Single "Responsive" Card-->
@@ -25,7 +29,7 @@
             <mat-chip [routerLink]="['/artist', artist.id]">{{
               artist.name
             }}</mat-chip>
-            <mat-chip>Possible Second Artist</mat-chip>
+            <!-- <mat-chip>Possible Second Artist</mat-chip> -->
           </mat-chip-list>
         </mat-card-content>
       </mat-card>
