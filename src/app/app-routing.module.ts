@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'artist/:id', component: ArtistDiscographyComponent },
   { path: 'album/:id', component: AlbumComponent },
   { path: 'about', component: AboutComponent },
-  { path: '', component: NewReleasesComponent },
+  { path: '', redirectTo: 'newReleases', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
 
