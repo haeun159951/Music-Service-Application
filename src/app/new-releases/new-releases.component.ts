@@ -7,9 +7,9 @@ import { default as data } from '../data/NewReleasesAlbums.json';
 })
 export class NewReleasesComponent implements OnInit {
   releases: Array<any> = [];
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
     this.releases = data.albums.items;
   }
-
-  ngOnInit(): void {}
 }

@@ -11,10 +11,10 @@ export class ArtistDiscographyComponent implements OnInit {
   albums: Array<any> = [];
   artist: any;
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
     this.albums = albumData.albums.items;
     this.artist = artistData;
   }
-
-  ngOnInit(): void {}
 }

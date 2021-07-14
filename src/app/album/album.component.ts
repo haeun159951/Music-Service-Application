@@ -7,9 +7,9 @@ import { default as data } from '../data/SearchResultsAlbum.json';
 })
 export class AlbumComponent implements OnInit {
   album: any;
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
     this.album = data;
   }
-
-  ngOnInit(): void {}
 }
