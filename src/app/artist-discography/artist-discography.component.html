@@ -1,6 +1,8 @@
 <h1>{{ artist.name }}</h1>
-<p>Full discography for {{ artist.name }}</p>
-<p>Click the <b>album cover</b> for more information</p>
+<p>
+  Full discography for {{ artist.name }} <br />Click the <b>album cover</b> for
+  more information
+</p>
 <mat-card
   [style.background]="
     'url(' + artist.images[0].url + ') 
