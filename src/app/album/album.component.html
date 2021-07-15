@@ -4,7 +4,7 @@
   <mat-card-content fxLayout="row wrap" fxLayout.xs="column">
     <div fxflex>
       <img
-        src="https://i.scdn.co/image/ab67616d00001e02b02a3380a69bd2418a1f68f1"
+        src="{{ album.images[1].url }}"
         alt="album cover"
         [style.margin]="'10px'"
         [style.max-width]="'90%'"
@@ -25,10 +25,7 @@
         </mat-chip-list>
         <br />
 
-        <div>
-          This compilation (P) 2021 Six Course Music Group, LLC & RCA Records, a
-          division of Sony Music Entertainment
-        </div>
+        <div>© 2001 Island Records Inc. <br />℗ 1977 UMG Recordings, Inc.</div>
         <!-- <div>Possible Second Copyright</div> -->
       </div>
     </div>
@@ -46,7 +43,6 @@
         <mat-card-content
           >{{ track.track_number }} : {{ track.name }} -
           {{ (track.duration_ms / 60000).toFixed(2) }}
-          <!-- NOTE 3.34 was determined by using (duration_ms / 60000).toFixed(2) -->
         </mat-card-content>
       </mat-card>
     </div>
