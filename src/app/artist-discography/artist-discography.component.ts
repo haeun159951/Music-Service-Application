@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { default as albumData } from '../data/SearchResultsAlbums.json';
-import { default as artistData } from '../data/SearchResultsArtist.json';
+import { MusicDataService } from '../music-data.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-artist-discography',
@@ -10,11 +11,35 @@ import { default as artistData } from '../data/SearchResultsArtist.json';
 export class ArtistDiscographyComponent implements OnInit {
   albums: Array<any> = [];
   artist: any;
+  albumSubscription!: Subscription;
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private musicData: MusicDataService
+  ) {}
 
   ngOnInit(): void {
-    this.albums = albumData.albums.items;
-    this.artist = artistData;
+    this.albumSubscription = this.route.params.subscribe((params: Params) => {
+      this.musicData.getArtistById(params.id).subscribe((data) => {
+        this.artist = data;
+      });
+
+      this.musicData.getAlbumsByArtistId(params.id).subscribe((data) => {
+        let uniqueAlbum = data.items;
+        let duplicatArray: Array<any> = [];
+        this.albums = uniqueAlbum.filter((album: any) => {
+          let duplicateAlbum = duplicatArray.includes(album.name);
+          if (duplicateAlbum) {
+            return false;
+          }
+          duplicatArray.push(album.name);
+          return true;
+        });
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.albumSubscription?.unsubscribe();
   }
 }
