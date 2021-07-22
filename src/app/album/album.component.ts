@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { default as data } from '../data/SearchResultsAlbum.json';
+import { MusicDataService } from '../music-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
@@ -7,9 +11,29 @@ import { default as data } from '../data/SearchResultsAlbum.json';
 })
 export class AlbumComponent implements OnInit {
   album: any;
-  constructor() {}
+  albumSubscription!: Subscription;
+
+  constructor(
+    private musicData: MusicDataService,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
-    this.album = data;
+    this.albumSubscription = this.route.params.subscribe((params: Params) => {
+      this.musicData
+        .getAlbumById(params.id)
+        .subscribe((data) => (this.album = data));
+    });
+  }
+
+  addToFavourites(trackID: any) {
+    if (this.musicData.addToFavourites(trackID)) {
+      this.snackBar.open('Adding to Favourites...', 'Done', { duration: 1500 });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.albumSubscription?.unsubscribe();
   }
 }

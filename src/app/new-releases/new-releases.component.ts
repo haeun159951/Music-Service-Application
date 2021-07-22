@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { default as data } from '../data/NewReleasesAlbums.json';
+import { Subscription } from 'rxjs';
+import { MusicDataService } from '../music-data.service';
 @Component({
   selector: 'app-new-releases',
   templateUrl: './new-releases.component.html',
@@ -7,9 +8,19 @@ import { default as data } from '../data/NewReleasesAlbums.json';
 })
 export class NewReleasesComponent implements OnInit {
   releases: Array<any> = [];
-  constructor() {}
+  newReleaseSubscription!: Subscription;
+
+  constructor(private musicData: MusicDataService) {}
 
   ngOnInit(): void {
-    this.releases = data.albums.items;
+    this.newReleaseSubscription = this.musicData
+      .getNewReleases()
+      .subscribe((data) => {
+        this.releases = data.albums.items;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.newReleaseSubscription?.unsubscribe();
   }
 }
