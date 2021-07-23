@@ -12,6 +12,7 @@ export class SearchResultComponent implements OnInit {
   results: any;
   searchQuery: any;
   searchSubscription!: Subscription;
+  musicSubscription!: Subscription;
   constructor(
     private route: ActivatedRoute,
     private musicData: MusicDataService
@@ -20,15 +21,18 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
     this.searchSubscription = this.route.queryParams.subscribe((params) => {
       this.searchQuery = params['q'];
-      this.musicData.searchArtists(this.searchQuery).subscribe((data) => {
-        this.results = data.artists.items.filter(
-          (item: any) => item.images.length > 0
-        );
-      });
+      this.musicSubscription = this.musicData
+        .searchArtists(this.searchQuery)
+        .subscribe((data) => {
+          this.results = data.artists.items.filter(
+            (item: any) => item.images.length > 0
+          );
+        });
     });
   }
 
   ngOnDestroy(): void {
     this.searchSubscription?.unsubscribe();
+    this.musicSubscription?.unsubscribe();
   }
 }

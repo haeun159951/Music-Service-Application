@@ -12,6 +12,7 @@ export class ArtistDiscographyComponent implements OnInit {
   albums: Array<any> = [];
   artist: any;
   albumSubscription!: Subscription;
+  musicSubscription!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,22 +25,25 @@ export class ArtistDiscographyComponent implements OnInit {
         this.artist = data;
       });
 
-      this.musicData.getAlbumsByArtistId(params.id).subscribe((data) => {
-        let uniqueAlbum = data.items;
-        let duplicatArray: Array<any> = [];
-        this.albums = uniqueAlbum.filter((album: any) => {
-          let duplicateAlbum = duplicatArray.includes(album.name);
-          if (duplicateAlbum) {
-            return false;
-          }
-          duplicatArray.push(album.name);
-          return true;
+      this.musicSubscription = this.musicData
+        .getAlbumsByArtistId(params.id)
+        .subscribe((data) => {
+          let uniqueAlbum = data.items;
+          let duplicatArray: Array<any> = [];
+          this.albums = uniqueAlbum.filter((album: any) => {
+            let duplicateAlbum = duplicatArray.includes(album.name);
+            if (duplicateAlbum) {
+              return false;
+            }
+            duplicatArray.push(album.name);
+            return true;
+          });
         });
-      });
     });
   }
 
   ngOnDestroy(): void {
     this.albumSubscription?.unsubscribe();
+    this.musicSubscription?.unsubscribe();
   }
 }
