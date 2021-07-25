@@ -4,7 +4,7 @@
  * assignment has been copied manually or electronically from any other source (including web sites) or
  * distributed to other students.
  *
- * Name: Ha Eun Kim Student ID: 158007187 Date: Jul 30, 2021
+ * Name: Ha Eun Kim Student ID: 158007187 Date: Jul 25, 2021
  *
  ********************************************************************************/
 import { Component } from '@angular/core';
@@ -29,5 +29,3 @@ export class AppComponent {
     this.searchString = '';
   }
 }
-
-//$event.target.value

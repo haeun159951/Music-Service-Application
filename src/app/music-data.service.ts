@@ -20,6 +20,7 @@ export class MusicDataService {
       mergeMap((token) => {
         return this.http.get<any>(
           'https://api.spotify.com/v1/browse/new-releases',
+
           { headers: { Authorization: `Bearer ${token}` } }
         );
       })
