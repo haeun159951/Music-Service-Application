@@ -27,10 +27,25 @@ export class AlbumComponent implements OnInit {
     });
   }
 
+  // addToFavourites(trackID: any) {
+  //   if (this.musicData.addToFavourites(trackID)) {
+  //     this.snackBar.open('Adding to Favourites...', 'Done', { duration: 1500 });
+  //   }
+  // }
+
   addToFavourites(trackID: any) {
-    if (this.musicData.addToFavourites(trackID)) {
-      this.snackBar.open('Adding to Favourites...', 'Done', { duration: 1500 });
-    }
+    this.musicData.addToFavourites(trackID).subscribe(
+      (data) => {
+        this.snackBar.open('Adding to Favourites...', 'Done', {
+          duration: 1500,
+        });
+      },
+      (err) => {
+        this.snackBar.open('Unable to add song to Favourites', 'Done', {
+          duration: 2500,
+        });
+      }
+    );
   }
 
   ngOnDestroy(): void {
