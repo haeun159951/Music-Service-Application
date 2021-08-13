@@ -6,7 +6,7 @@
  *
  * Name: Ha Eun Kim Student ID: 158007187 Date: Aug 13, 2021
  * Deploy URL: https://web422-assignment456.vercel.app
- * Heroku URL - api: https://murmuring-depths-86197.herokuapp.com/api/users
+ * Heroku URL - api: https://murmuring-depths-86197.herokuapp.com
  *
  ********************************************************************************/
 import { Component } from '@angular/core';
