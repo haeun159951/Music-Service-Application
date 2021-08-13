@@ -4,7 +4,9 @@
  * assignment has been copied manually or electronically from any other source (including web sites) or
  * distributed to other students.
  *
- * Name: Ha Eun Kim Student ID: 158007187 Date: Jul 25, 2021
+ * Name: Ha Eun Kim Student ID: 158007187 Date: Aug 13, 2021
+ * Deploy URL: https://web422-assignment456.vercel.app
+ * Heroku URL - api: https://murmuring-depths-86197.herokuapp.com/api/users
  *
  ********************************************************************************/
 import { Component } from '@angular/core';

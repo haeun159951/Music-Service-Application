@@ -27,12 +27,6 @@ export class AlbumComponent implements OnInit {
     });
   }
 
-  // addToFavourites(trackID: any) {
-  //   if (this.musicData.addToFavourites(trackID)) {
-  //     this.snackBar.open('Adding to Favourites...', 'Done', { duration: 1500 });
-  //   }
-  // }
-
   addToFavourites(trackID: any) {
     this.musicData.addToFavourites(trackID).subscribe(
       (data) => {

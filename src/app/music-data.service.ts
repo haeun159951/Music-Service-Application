@@ -90,7 +90,9 @@ export class MusicDataService {
     );
   }
 
-  removeFromFavourites(id: any): Observable<any> {
+  removeFromFavourites(
+    id: string
+  ): Observable<SpotifyApi.MultipleTracksResponse> {
     return this.http
       .delete<[String]>(`${environment.userAPIBase}/favourites/${id}`)
       .pipe(
@@ -116,7 +118,7 @@ export class MusicDataService {
       );
   }
 
-  getFavourites(): Observable<any> {
+  getFavourites(): Observable<SpotifyApi.MultipleTracksResponse> {
     return this.http
       .get<[String]>(`${environment.userAPIBase}/favourites/`)
       .pipe(
@@ -144,39 +146,4 @@ export class MusicDataService {
         })
       );
   }
-
-  // addToFavourites(id: string) {
-  //   if (id === null || id === 'undefined' || this.favouritesList.length >= 50) {
-  //     return false;
-  //   } else {
-  //     this.favouritesList.push(id);
-  //     return true;
-  //   }
-  // }
-
-  // // need to fix a bit
-  // removeFromFavourites(id: string): Observable<any> {
-  //   this.favouritesList.splice(this.favouritesList.indexOf(id), 1);
-  //   return this.getFavourites();
-  // }
-
-  // getFavourites(): Observable<any> {
-  //   if (this.favouritesList.length > 0) {
-  //     const ids = this.favouritesList.join(',');
-  //     return this.spotifyToken.getBearerToken().pipe(
-  //       mergeMap((token) => {
-  //         return this.http.get<any>(
-  //           `https://api.spotify.com/v1/tracks?ids=${ids}`,
-  //           {
-  //             headers: { Authorization: `Bearer ${token}` },
-  //           }
-  //         );
-  //       })
-  //     );
-  //   } else {
-  //     return new Observable((o) => {
-  //       o.next([]);
-  //     });
-  //   }
-  // }
 }
